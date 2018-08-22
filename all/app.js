@@ -16,7 +16,11 @@ app.post('/get',function(req,res){
 
 var query=req.body.name;
 console.log(query);
-var arr=query.split(" ");
+
+
+
+
+    var arr=query.split(" ");
 var result="";
 for(var i=0;i<arr.length;i++)
 {
@@ -45,19 +49,27 @@ Request.get("https://api.themoviedb.org/3/search/movie?api_key=2b6f6b0f9f52bbfa3
 
 })
 
-
-
-
-
-
-
-
-
-
     
     })
     
+app.post('/getmov',function(req,res){
 
+var e=req.body.movnm;
+
+
+Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+
+    var selected=JSON.parse(body);
+   //console.dir(body);
+   res.render('show.ejs',{item:selected})
+
+
+})
+
+})
 
 
 app.get('/tvshows',function(req,res){

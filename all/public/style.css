@@ -37,3 +37,11 @@ width:50%;
 margin:10px auto;
 
 }
+#moviebox{
+
+margin-top:40px;
+width: 100%;
+margin-left: 0px;
+margin-right: 0px;
+background-image: radial-gradient(circle at 20% 50%, rgba(11.76%, 15.29%, 17.25%, 0.98) 0%, rgba(11.76%, 15.29%, 17.25%, 0.88) 100%); 
+}

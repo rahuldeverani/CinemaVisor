@@ -1,7 +1,7 @@
 <% include partials/header.ejs %>
 
 <div class="a">
-        <h1>Top Rated  </h1>
+        <h1>Top Rated Movies</h1>
         <div class="p">
       <div class="row" style="display: flex; flex-wrap: wrap">
 <% movies.results.forEach(function(movie){ %>
@@ -13,14 +13,16 @@
                   
                  
                   <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" class="thumbnail">
-                  <form method="POST" action='/getmov'>
-                  <h3 name='moviename'><%= movie.title %></h3>
                
-
-                  
-                      <p class="infobtn"><a href="#" class="btn btn-primary">More Info!</a> </p>
+                      <h3><%= movie.title %></h3>
+                     
+                    <form action="/getmov" method="POST">
+                   <input type="text" name="movnm" value="<%= movie.id %>" style="display: none">
+                   <p class="infobtn"><button class="btn btn-primary">More Info!</button> </p>
                     </form>
-
+                  
+                      
+                       
 
                  
 
