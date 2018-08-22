@@ -13,11 +13,20 @@
                   
                  
                   <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" class="thumbnail">
-                  <h3><%= movie.title %></h3>
-                  <p><%= movie.overview %></p>
+                  <form method="POST" action='/getmov'>
+                  <h3 name='moviename'><%= movie.title %></h3>
+               
+
+                  
+                      <p class="infobtn"><a href="#" class="btn btn-primary">More Info!</a> </p>
+                    </form>
 
 
-                  <p><a href="#" class="btn btn-primary" role="button">More Info!</a> </p>
+                 
+
+
+
+            
                 </div>
               </div>
             </div>

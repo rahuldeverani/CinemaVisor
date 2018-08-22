@@ -1,6 +1,8 @@
 
 img{
-    width: 100%;
+
+  width: 100%;
+ 
 }
 .down{
 background-color: black;
@@ -28,5 +30,10 @@ height: 200px;
 
 width:360px;
 margin: 20px auto;
+
+}
+.infobtn{
+width:50%;
+margin:10px auto;
 
 }
