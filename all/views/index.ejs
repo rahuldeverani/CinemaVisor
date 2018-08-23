@@ -5,15 +5,17 @@
         <div class="p">
       <div class="row" style="display: flex; flex-wrap: wrap">
 <% movies.results.forEach(function(movie){ %>
-
-            <div class="col-sm-6 col-md-4 col-lg-4">
-              <div class="thumbnail">
-               
-                <div class="caption">
-                  
-                 
+  <% if(movie.poster_path==null){ %>
+          
+                 <% } else{ %>
+                  <div class="col-sm-6 col-md-4 col-lg-4">
+                    <div class="thumbnail">
+                     
+                      <div class="caption">
+                    
+      
                   <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" class="thumbnail">
-               
+                
                       <h3><%= movie.title %></h3>
                      
                     <form action="/getmov" method="POST">
@@ -32,6 +34,7 @@
                 </div>
               </div>
             </div>
+            <% } %>
  <%  })  %>
 </div>
 </div>

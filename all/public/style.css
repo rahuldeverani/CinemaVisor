@@ -43,5 +43,14 @@ margin-top:40px;
 width: 100%;
 margin-left: 0px;
 margin-right: 0px;
-background-image: radial-gradient(circle at 20% 50%, rgba(11.76%, 15.29%, 17.25%, 0.98) 0%, rgba(11.76%, 15.29%, 17.25%, 0.88) 100%); 
+background: rgb(56,51,51);
+background: radial-gradient(circle, rgba(56,51,51,1) 0%, rgba(0,0,0,1) 72%, rgba(0,0,0,1) 100%);
+}
+#mydiv{
+opacity: 0.4;
+height:100%;
+width:100%;
+margin: auto;
+margin-top:7%;
+
 }
