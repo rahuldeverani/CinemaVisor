@@ -10,31 +10,107 @@
 
   </head>
 <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Moviesite</a>
-          </div>
-          
-          <div id="navbar" class="collapse navbar-collapse">
-              
-            <ul class="nav navbar-nav">
-              <li><a href="/">Home</a></li>
-            
-              <li><a href="#about">Discover</a></li>
-              <li><a href="#contact">Most-viewed</a></li>
-              <li><a href="#contact">Movies</a></li>
-              <li><a href="#contact">TV Shows</a></li>
+  <nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Movie Mania</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+
+          <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+
+          <!-- <li><a href="#">Link</a></li> -->
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Discover
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="discover-movies" href="#">Movies</a></li>
+              <li><a class="discover-tv-shows" href="#">TV Shows</a></li>
             </ul>
-          </div><!-- /.nav-collapse -->
-        </div><!-- /.container -->
-      </nav><!-- /.navbar -->
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movies
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="popular-movies" href="#">Popular</a></li>
+              <li><a class="top-rated-movies" href="#">Top Rated</a></li>
+              <li><a class="upcoming-movies" href="#">Upcoming</a></li>
+              <li><a class="now-playing-movies" href="#">Now Playing</a></li>
+            </ul>
+          </li>
+          
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TV Shows
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a class="popular-tv-shows" href="#">Popular</a></li>
+                  <li><a class="top-rated-tv-shows" href="#">Top Rated</a></li>
+                  <li><a class="on-tv-tv-shows" href="#">On TV</a></li>
+                  <li><a class="airing-today-tv-shows" href="#">Airing Today</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People
+                  <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="popular people" href="#">Popular People</a></li>
+                </ul>
+              </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/users/login">Login</a></li>
+          <li><a href="/users/register">Sign Up</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">You
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">View Profile</a></li>
+              <li><a href="#">Watchlist</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Edit Profile</a></li>
+              <li><a href="#">Settings</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+ 
+
+
+
+
+
+                  <% if(success_msg){ %>
+                    <div class="alert alert-success"><%= success_msg %></div> 
+                  <% } else if(error_msg){ %>  
+                    <div class="alert alert-warning"><%= error_msg %></div>
+                  <% } else if(error){ %> 
+                    <div class="alert alert-danger"><%= error %></div>
+                 <% } %>
+
       <div class="container">
 <div class="search">
 
