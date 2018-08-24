@@ -64,10 +64,46 @@ Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa33
 
     var selected=JSON.parse(body);
    //console.dir(body);
-   res.render('show.ejs',{item:selected})
+   Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=videos", (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+
+    var trailer=JSON.parse(body);
+   //console.dir(body);
+
+
+
+   
+   res.render('show.ejs',{item:selected,trailer:trailer})
 
 
 })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 })
 
