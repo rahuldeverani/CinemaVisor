@@ -57,10 +57,27 @@ margin-top:7%;
 .trailer-box{
 
 width:800px;
-margin-top:40px;
+margin-top:100px;
 margin-left:auto;
 margin-right: auto;
 
 
 
+}
+.pp{
+    background: #e52d27;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #b31217, #e52d27);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #b31217, #e52d27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
+margin:0;
+padding:0;
+}
+.textinbox{
+ 
+position: absolute; /* To place the text on the image*/
+top: 200px; /* The exact location of the text from the top of the image*/
+left: 100px;; /* Other beautification stuff */
+width: 100%;
+color:white; 
 }
