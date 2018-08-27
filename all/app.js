@@ -59,15 +59,10 @@ app.use(expressValidator({
 app.use('/users',users);
 
 
-app.post('/get',function(req,res){
-
+app.post('/getmovie',function(req,res){
 var query=req.body.name;
 console.log(query);
-
-
-
-
-    var arr=query.split(" ");
+ var arr=query.split(" ");
 var result="";
 for(var i=0;i<arr.length;i++)
 {
@@ -79,37 +74,23 @@ else{
 
     result+=arr[i];
 }
-} 
-
-
-
-    
+}   
 Request.get("https://api.themoviedb.org/3/search/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
     if(error) {
         return console.dir(error);
     }
-
-    var found=JSON.parse(body);
+  var found=JSON.parse(body);
  //  console.log(tvshows.results[0].title);
    res.render('index.ejs',{movies:found})
-
-
 })
-
-    
-    })
-    
-app.post('/getmov',function(req,res){
-
+ })
+    app.post('/getmov',function(req,res){
 var e=req.body.movnm;
-
-
 Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
     if(error) {
         return console.dir(error);
     }
-
-    var selected=JSON.parse(body);
+        var selected=JSON.parse(body);
    //console.dir(body);
    Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=videos", (error, response, body) => {
     if(error) {
@@ -118,42 +99,11 @@ Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa33
 
     var trailer=JSON.parse(body);
    //console.dir(body);
-
-
-
-   
-   res.render('show.ejs',{item:selected,trailer:trailer})
-
+res.render('show.ejs',{item:selected,trailer:trailer})
 
 })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
-
 
 app.get('/tvshows',function(req,res){
 
@@ -174,7 +124,153 @@ app.get('/tvshows',function(req,res){
 
 });
 
+app.get('/tvshows/toprated',function(req,res){
 
+    Request.get("https://api.themoviedb.org/3/tv/top_rated?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var topratedtvshows=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:topratedtvshows})
+
+
+})
+
+
+
+
+});
+
+app.get('/tvshows/popular',function(req,res){
+    
+    Request.get("https://api.themoviedb.org/3/tv/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var populartvshows=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:populartvshows})
+
+
+})
+
+
+
+
+});
+
+
+app.get('/tvshows/airing-now',function(req,res){
+    
+    Request.get("https://api.themoviedb.org/3/tv/on_the_air?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var airingtvshows=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:airingtvshows})
+
+
+})
+
+
+
+
+});
+app.get('/tvshows/airing-today',function(req,res){
+    
+    Request.get("https://api.themoviedb.org/3/tv/airing_today?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var airingtvshows=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:airingtvshows})
+
+
+})
+
+
+
+
+});
+app.get('/movies/popular',function(req,res){
+    
+    Request.get("https://api.themoviedb.org/3/movie/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var popmov=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:popmov})
+
+
+})
+
+
+
+
+});
+app.get('/movies/top-rated',function(req,res){
+
+    Request.get("https://api.themoviedb.org/3/movie/top_rated?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var popmov=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:popmov})
+
+
+})
+
+
+
+
+});
+app.get('/movies/upcoming',function(req,res){
+   
+    Request.get(" https://api.themoviedb.org/3/movie/upcoming?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var popmov=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:popmov})
+
+
+})
+
+
+
+
+});
+app.get('/movies/now-playing',function(req,res){
+   
+    Request.get(" https://api.themoviedb.org/3/movie/now_playing?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&page=1"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var popmov=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:popmov})
+
+
+})
+
+
+
+
+});
 
 
 

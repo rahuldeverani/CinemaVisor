@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
-          <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="/movies/popular">Home<span class="sr-only">(current)</span></a></li>
 
           <!-- <li><a href="#">Link</a></li> -->
 
@@ -44,7 +44,7 @@
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a class="discover-movies" href="#">Movies</a></li>
-              <li><a class="discover-tv-shows" href="#">TV Shows</a></li>
+              <li><a class="discover-tv-shows" href="/toprated-tvshows">TV Shows</a></li>
             </ul>
           </li>
 
@@ -52,10 +52,10 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movies
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a class="popular-movies" href="#">Popular</a></li>
-              <li><a class="top-rated-movies" href="#">Top Rated</a></li>
-              <li><a class="upcoming-movies" href="#">Upcoming</a></li>
-              <li><a class="now-playing-movies" href="#">Now Playing</a></li>
+              <li><a class="popular-movies" href="/movies/popular">Popular</a></li>
+              <li><a class="top-rated-movies" href="/movies/top-rated">Top Rated</a></li>
+              <li><a class="upcoming-movies" href="/movies/upcoming">Upcoming</a></li>
+              <li><a class="now-playing-movies" href="/movies/now-playing">Now Playing</a></li>
             </ul>
           </li>
           
@@ -63,10 +63,10 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TV Shows
                 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                  <li><a class="popular-tv-shows" href="#">Popular</a></li>
-                  <li><a class="top-rated-tv-shows" href="#">Top Rated</a></li>
-                  <li><a class="on-tv-tv-shows" href="#">On TV</a></li>
-                  <li><a class="airing-today-tv-shows" href="#">Airing Today</a></li>
+                  <li><a class="popular-tv-shows" href="/tvshows/popular">Popular</a></li>
+                  <li><a class="top-rated-tv-shows" href="/tvshows/toprated">Top Rated</a></li>
+                  <li><a class="on-tv-tv-shows" href="/tvshows/airing-today">On TV</a></li>
+                  <li><a class="airing-today-tv-shows" href="/tvshows/airing-now">Airing Today</a></li>
               </ul>
             </li>
 
@@ -118,18 +118,26 @@
                  <% } %>
 
       <div class="container">
-<div class="search">
+        <div class="row">
+<div class="search col-md-8 col-sm-8">
 
 
     <form action="/get" method="POST">
       <div class='form-group'><input type="text" name="name" placeholder="Search Movie, Tv Shows" class='form-control' required></div>
-     
+    </div>
+      <div class="form-group col-md-3 col-sm-3">
       
+          <select class="form-control" id="sel1">
+            <option name="mov">Movies</option>
+            <option name="show">Tv-Shows</option>
+          </select>
+        </div>
       <button class="btn  btn-dark">Let's Go!</button>
+   
         </form>
-
+      </div>
 
  
-        
-</div>
+  
+
 <hr class="style-one">
