@@ -59,7 +59,10 @@ app.use(expressValidator({
 app.use('/users',users);
 
 
-app.post('/getmovie',function(req,res){
+app.post('/get',function(req,res){
+
+var type=req.body.selval;
+console.log(type);
 var query=req.body.name;
 console.log(query);
  var arr=query.split(" ");
@@ -74,8 +77,11 @@ else{
 
     result+=arr[i];
 }
-}   
-Request.get("https://api.themoviedb.org/3/search/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
+}
+
+if(type=="Movies")
+{console.log("in movies");
+    Request.get("https://api.themoviedb.org/3/search/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
     if(error) {
         return console.dir(error);
     }
@@ -83,7 +89,25 @@ Request.get("https://api.themoviedb.org/3/search/movie?api_key=2b6f6b0f9f52bbfa3
  //  console.log(tvshows.results[0].title);
    res.render('index.ejs',{movies:found})
 })
+}
+else{
+  console.log("in tv")
+    Request.get("https://api.themoviedb.org/3/search/tv?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+      var found=JSON.parse(body);
+     //  console.log(tvshows.results[0].title);
+       res.render('index.ejs',{movies:found})
+    })
+
+
+}
+
  })
+
+
+
     app.post('/getmov',function(req,res){
 var e=req.body.movnm;
 Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {

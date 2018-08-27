@@ -117,27 +117,30 @@
                     <div class="alert alert-danger"><%= error %></div>
                  <% } %>
 
-      <div class="container">
-        <div class="row">
-<div class="search col-md-8 col-sm-8">
+                 <div class="container">
 
 
-    <form action="/get" method="POST">
-      <div class='form-group'><input type="text" name="name" placeholder="Search Movie, Tv Shows" class='form-control' required></div>
-    </div>
-      <div class="form-group col-md-3 col-sm-3">
-      
-          <select class="form-control" id="sel1">
-            <option name="mov">Movies</option>
-            <option name="show">Tv-Shows</option>
-          </select>
+      <form class="form-inline" action="/get" method="POST" >
+        <div class="search col-md-8 col-sm-8">
+          <label class="sr-only" for="inlineFormInputName2">Name</label>
+          <input id="myinp" type="text" name="name"class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search Movies And Tv Shows" required>
         </div>
-      <button class="btn  btn-dark">Let's Go!</button>
-   
+        <div class="search col-md-2 col-sm-2">
+          <label class="sr-only" for="inlineFormInputGroupUsername2">Preferance</label>
+          <div class="input-group mb-2 mr-sm-2">
+              <select class="form-control" id="sel1" name="selval" >
+                  <option>Movies</option>
+                  <option>Tv-Shows</option>
+                </select>
+           
+          </div>
+        
+        
+          
+          
+        </div>
+        <div class="search col-md-2 col-sm-2"><button type="submit" class="btn  btn-dark">Let's Go!</button></div>
         </form>
-      </div>
 
- 
-  
 
 <hr class="style-one">
