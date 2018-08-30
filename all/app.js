@@ -107,7 +107,7 @@ else{
  })
 
 
-
+/*
     app.post('/getmov',function(req,res){
 var e=req.body.movnm;
 Request.get("https://api.themoviedb.org/3/movie/"+e+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
@@ -127,6 +127,35 @@ res.render('show.ejs',{item:selected,trailer:trailer})
 
 })
 })
+}) */
+
+app.post('/getmov', function (req, res) {
+    var e = req.body.movnm;
+    Request.get("https://api.themoviedb.org/3/movie/" +e+ "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+        if (error) {
+            return console.dir(error);
+        }
+        var selected = JSON.parse(body);
+        
+        Request.get("https://api.themoviedb.org/3/movie/" +e+ "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=videos", (error, response, body) => {
+            if (error) {
+                return console.dir(error);
+            }
+
+            var trailer = JSON.parse(body);
+            var itsId=selected.id;
+            console.log("..................... id : "+itsId)
+            Request.get("https://api.themoviedb.org/3/movie/" +itsId+ "/reviews?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+                if (error) {
+                    return console.dir(error);
+                }
+
+                reviews = JSON.parse(body);
+                console.log("..................... id : "+reviews.results)
+                res.render('show.ejs', { item: selected, trailer: trailer , reviews: reviews})
+            })
+        })
+    })
 })
 
 app.get('/tvshows',function(req,res){

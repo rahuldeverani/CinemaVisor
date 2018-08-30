@@ -37,7 +37,18 @@
 </div>
 
 
+<div>
+       <% reviews.results.forEach(function(review) { %>
+            <div class="col-sm-6 col-md-4 col-lg-4">
+            <h2><%= review.author %></h2>
+            <p><%= review.content %></p>
+            </div>
+      
+      <% }) %> 
 
+    
+
+</div>
 
 
 
