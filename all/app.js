@@ -234,6 +234,24 @@ app.get('/tvshows/airing-now',function(req,res){
 
 
 });
+
+app.get('/popular-people',function(req,res){
+    
+    Request.get("https://api.themoviedb.org/3/person/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var people=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('famous.ejs',{people:people})
+
+
+})
+
+
+})
+
 app.get('/tvshows/airing-today',function(req,res){
     
     Request.get("https://api.themoviedb.org/3/tv/airing_today?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
@@ -325,7 +343,11 @@ app.get('/movies/now-playing',function(req,res){
 
 });
 
+app.get('/',function(req,res){
 
+res.render('landing.ejs');
+
+})
 
 
 app.get('/:id',function(req,res){
@@ -344,4 +366,4 @@ app.get('/:id',function(req,res){
 
 ///auth now on
 
-app.listen(3030);
+app.listen(3090);
