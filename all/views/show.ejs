@@ -25,7 +25,29 @@
                         </div>
                   </div>
             </div>
-
+<div>
+                  <div class="a">
+                        <div class="p">
+                              <div class="row" style="display: flex; flex-wrap: wrap">
+                                    <% casts.cast.forEach(function(cast) { %>
+                                          <% if(cast.profile_path==null){ %>
+                                                <% } else{ %>
+                                                      <div class="col-sm-6 col-md-4 col-lg-2">
+                                                            <div class="thumbnail">
+                                                                  <div class="caption cast">
+                                                                        <img src="https://image.tmdb.org/t/p/w500<%= cast.profile_path %>" alt="<%= cast.name %>">
+                                                                        <h3>
+                                                                              <%= cast.name %>
+                                                                        </h3>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                      <% } %>
+                                                            <%  })  %>
+                              </div>
+                        </div>
+                  </div>
+            </div>
 
             <div class="pp">
                   <div class="trailer-box">
@@ -40,19 +62,21 @@
 
             </div>
 
-            <div>
+            <div class="review-box">
+                        <h2 class="rev">Reviews</h2>
                   <% reviews.results.forEach(function(review) { %>
 
                         
                         <div class="review col-sm-6 col-md-8 col-lg-10">
+                                    
                               <div class="panel panel-primary">
                                     <div class="panel-heading">
-                                          <h3 class="panel-title">
+                                          <h3 class="panel-title rev">
                                                 <%= review.author %>
                                           </h3>
                                     </div>
                                     <div class="panel-body">
-                                          <%= review.content %>
+                                        <p class="rev"> <%= review.content %></p> 
                                     </div>
                               </div>
                         </div>

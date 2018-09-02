@@ -1,14 +1,38 @@
 <% include partials/header.ejs %>
 
+<div class="row" style="display: flex; flex-wrap: wrap"></div>
+<% people.results.forEach(function(person){ %>
+     
+    <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="thumbnail">
+         
+          <div class="caption">
+        
 
-people.results.forEach(function(person){
+      <img src="https://image.tmdb.org/t/p/w500<%= person.profile_path %>" alt="" class="thumbnail" style="width:100%">
+    
+          <h3><%= person.name %></h3>
+         
+        </div>
+         </div>
+       
+
+</div>
+
+<% }) %>
+</div>
 
 
 
-})
+ 
+                      
+                       
+
+                 
 
 
 
+            
 
 
 

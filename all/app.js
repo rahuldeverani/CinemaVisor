@@ -131,34 +131,38 @@ res.render('show.ejs',{item:selected,trailer:trailer})
 
 app.post('/getmov', function (req, res) {
     var e = req.body.movnm;
-    Request.get("https://api.themoviedb.org/3/movie/" +e+ "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+    Request.get("https://api.themoviedb.org/3/movie/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
         if (error) {
             return console.dir(error);
         }
         var selected = JSON.parse(body);
-        
-        Request.get("https://api.themoviedb.org/3/movie/" +e+ "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=videos", (error, response, body) => {
+
+        Request.get("https://api.themoviedb.org/3/movie/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=videos", (error, response, body) => {
             if (error) {
                 return console.dir(error);
             }
 
             var trailer = JSON.parse(body);
-            var itsId=selected.id;
-            console.log("..................... id : "+itsId)
-            Request.get("https://api.themoviedb.org/3/movie/" +itsId+ "/reviews?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+            var itsId = selected.id;
+            Request.get("https://api.themoviedb.org/3/movie/" + itsId + "/reviews?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
                 if (error) {
                     return console.dir(error);
                 }
-
                 reviews = JSON.parse(body);
-                console.log("..................... id : "+reviews.results)
-                res.render('show.ejs', { item: selected, trailer: trailer , reviews: reviews})
+
+                Request.get("https://api.themoviedb.org/3/movie/" + itsId + "/casts?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+                    if (error) {
+                        return console.dir(error);
+                    }
+                    casts = JSON.parse(body);
+                    res.render('show.ejs', { item: selected, trailer: trailer, reviews: reviews, casts: casts })
+                })
             })
         })
     })
 })
 
-app.get('/tvshows',function(req,res){
+app.get('/tvshows/:id',function(req,res){
 
     Request.get("https://api.themoviedb.org/3/tv/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -177,7 +181,7 @@ app.get('/tvshows',function(req,res){
 
 });
 
-app.get('/tvshows/toprated',function(req,res){
+app.get('/tvshows/toprated/:id',function(req,res){
 
     Request.get("https://api.themoviedb.org/3/tv/top_rated?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -187,6 +191,7 @@ app.get('/tvshows/toprated',function(req,res){
         var topratedtvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
        res.render('index.ejs',{movies:topratedtvshows})
+      // console.log(fullUrl(req));      
 
 
 })
@@ -196,7 +201,7 @@ app.get('/tvshows/toprated',function(req,res){
 
 });
 
-app.get('/tvshows/popular',function(req,res){
+app.get('/tvshows/popular/:id',function(req,res){
     
     Request.get("https://api.themoviedb.org/3/tv/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -216,7 +221,7 @@ app.get('/tvshows/popular',function(req,res){
 });
 
 
-app.get('/tvshows/airing-now',function(req,res){
+app.get('/tvshows/airing-now/:id',function(req,res){
     
     Request.get("https://api.themoviedb.org/3/tv/on_the_air?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -235,7 +240,7 @@ app.get('/tvshows/airing-now',function(req,res){
 
 });
 
-app.get('/popular-people',function(req,res){
+app.get('/popular-people/:id',function(req,res){
     
     Request.get("https://api.themoviedb.org/3/person/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -252,7 +257,7 @@ app.get('/popular-people',function(req,res){
 
 })
 
-app.get('/tvshows/airing-today',function(req,res){
+app.get('/tvshows/airing-today/:id',function(req,res){
     
     Request.get("https://api.themoviedb.org/3/tv/airing_today?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -270,7 +275,7 @@ app.get('/tvshows/airing-today',function(req,res){
 
 
 });
-app.get('/movies/popular',function(req,res){
+app.get('/movies/popular/:id',function(req,res){
     
     Request.get("https://api.themoviedb.org/3/movie/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -288,7 +293,7 @@ app.get('/movies/popular',function(req,res){
 
 
 });
-app.get('/movies/top-rated',function(req,res){
+app.get('/movies/top-rated/:id',function(req,res){
 
     Request.get("https://api.themoviedb.org/3/movie/top_rated?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -306,7 +311,7 @@ app.get('/movies/top-rated',function(req,res){
 
 
 });
-app.get('/movies/upcoming',function(req,res){
+app.get('/movies/upcoming/:id',function(req,res){
    
     Request.get(" https://api.themoviedb.org/3/movie/upcoming?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -324,7 +329,7 @@ app.get('/movies/upcoming',function(req,res){
 
 
 });
-app.get('/movies/now-playing',function(req,res){
+app.get('/movies/now-playing/:id',function(req,res){
    
     Request.get(" https://api.themoviedb.org/3/movie/now_playing?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&page=1"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -348,7 +353,11 @@ app.get('/',function(req,res){
 res.render('landing.ejs');
 
 })
+app.get('/dashboard',function(req,res){
 
+res.render('dashboard.ejs');
+
+})
 
 app.get('/:id',function(req,res){
     Request.get("https://api.themoviedb.org/4/list/1?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
