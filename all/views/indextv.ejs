@@ -1,0 +1,44 @@
+<% include partials/header.ejs %>
+
+<div class="a">
+  <div class="container">
+        <h1>Top Rated Tv</h1>
+        <div class="p">
+      <div class="row" style="display: flex; flex-wrap: wrap">
+<% shows.results.forEach(function(show){ %>
+  <% if(show.poster_path==null){ %>
+          
+                 <% } else{ %>
+                  <div class="col-sm-6 col-md-4 col-lg-4">
+                    <div class="thumbnail">
+                     
+                      <div class="caption">
+                    
+      
+                  <img src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" alt="" class="thumbnail" style="width:100%">
+                
+                      <h3><%= show.name %></h3>
+                     
+                    <form action="/get-tv" method="POST">
+                   <input type="text" name="showname" value="<%= show.id %>" style="display: none">
+                   <p class="infobtn"><button class="btn btn-primary">More Info!</button> </p>
+                    </form>
+                  
+                      
+                       
+
+                 
+
+
+
+            
+                </div>
+              </div>
+            </div>
+            <% } %>
+ <%  })  %>
+</div>
+</div>
+</div>
+</div>
+<% include partials/footer.ejs %>

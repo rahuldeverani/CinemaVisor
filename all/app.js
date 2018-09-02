@@ -162,6 +162,70 @@ app.post('/getmov', function (req, res) {
     })
 })
 
+
+
+app.post('/get-tv', function (req, res) {
+    
+    var e = req.body.showname;
+    //console.log(e);
+    
+    Request.get("https://api.themoviedb.org/3/tv/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US", (error, response, body) => {
+        if (error) {
+            return console.dir(error);
+        }
+        var selected = JSON.parse(body);
+       
+        Request.get("https://api.themoviedb.org/3/tv/" + e + "/videos?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US", (error, response, body) => {
+            if (error) {
+                return console.dir(error);
+            }
+
+            var trailer = JSON.parse(body);
+            var itsId = selected.id;
+            
+
+            Request.get("https://api.themoviedb.org/3/tv/" + e + "/reviews?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&page=1", (error, response, body) => {
+                if (error) {
+                    return console.dir(error);
+                }
+                reviews = JSON.parse(body);
+  
+                Request.get(" https://api.themoviedb.org/3/tv/" + e + "/casts?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=credits", (error, response, body) => {
+                    if (error) {
+                        return console.dir(error);
+                    }
+                    casts = JSON.parse(body);
+                    res.render('showtv.ejs', { item: selected, trailer: trailer, reviews: reviews, casts: casts })
+                })
+            })
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/tvshows/:id',function(req,res){
 
     Request.get("https://api.themoviedb.org/3/tv/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
@@ -170,8 +234,8 @@ app.get('/tvshows/:id',function(req,res){
         }
     
         var tvshows=JSON.parse(body);
-       console.log(tvshows.results[0].title);
-       res.render('index.ejs',{movies:tvshows})
+      // console.log(tvshows.results[0].title);
+       res.render('indextv.ejs',{shows:tvshows})
 
 
 })
@@ -190,7 +254,7 @@ app.get('/tvshows/toprated/:id',function(req,res){
     
         var topratedtvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
-       res.render('index.ejs',{movies:topratedtvshows})
+       res.render('indextv.ejs',{shows:topratedtvshows})
       // console.log(fullUrl(req));      
 
 
@@ -210,7 +274,7 @@ app.get('/tvshows/popular/:id',function(req,res){
     
         var populartvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
-       res.render('index.ejs',{movies:populartvshows})
+       res.render('indextv.ejs',{shows:populartvshows})
 
 
 })
@@ -230,7 +294,7 @@ app.get('/tvshows/airing-now/:id',function(req,res){
     
         var airingtvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
-       res.render('index.ejs',{movies:airingtvshows})
+       res.render('indextv.ejs',{shows:airingtvshows})
 
 
 })
@@ -266,7 +330,7 @@ app.get('/tvshows/airing-today/:id',function(req,res){
     
         var airingtvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
-       res.render('index.ejs',{movies:airingtvshows})
+       res.render('indextv.ejs',{shows:airingtvshows})
 
 
 })
