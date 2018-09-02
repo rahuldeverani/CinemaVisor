@@ -98,7 +98,7 @@ else{
         }
       var found=JSON.parse(body);
      //  console.log(tvshows.results[0].title);
-       res.render('index.ejs',{movies:found})
+       res.render('indextv.ejs',{shows:found})
     })
 
 
