@@ -103,38 +103,11 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-
-
-
-
-
-
-               
-
-                 <div class="container">
-
-
-      <form class="form-inline" action="/get" method="POST" >
-        <div class="search col-md-8 col-sm-8">
-          <label class="sr-only" for="inlineFormInputName2">Name</label>
-          <input id="myinp" type="text" name="name"class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search Movies And Tv Shows" required>
-        </div>
-        <div class="search col-md-2 col-sm-2">
-          <label class="sr-only" for="inlineFormInputGroupUsername2">Preferance</label>
-          <div class="input-group mb-2 mr-sm-2">
-              <select class="form-control" id="sel1" name="selval" >
-                  <option>Movies</option>
-                  <option>Tv-Shows</option>
-                </select>
-           
-          </div>
-        
-        
-          
-          
-        </div>
-        <div class="search col-md-2 col-sm-2"><button type="submit" class="btn  btn-dark">Let's Go!</button></div>
-        </form>
-
-
-<hr class="style-one">
+  <div class="container">
+  <% if(success_msg){ %>
+    <div class="alert alert-success"><%= success_msg %></div> 
+     <% } else if(error_msg){ %>  
+       <div class="alert alert-warning"><%= error_msg %></div>
+     <% } else if(error){ %> 
+       <div class="alert alert-danger"><%= error %></div>
+    <% } %>
