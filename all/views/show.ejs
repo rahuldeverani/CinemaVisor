@@ -23,6 +23,12 @@
                               <p class="overview">
                                     <%= item.overview %>
                               </p>
+                              <% console.log("is is "+item.id) %>
+                              <form action="/addtolist" method="POST"> 
+                               <input name="movie" value="<%= item.id %>" style="display: none">
+                               <button>Add to watchlist</button>
+                              </form>
+                             
                         </div>
                   </div>
             </div>

@@ -6,8 +6,8 @@ var UserSchema=new mongoose.Schema({
 name:String,
 username:String,
 password:String,
-email:String
-
+email:String,
+watchlist:[Number]
 
 })
 
