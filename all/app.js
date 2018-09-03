@@ -487,12 +487,7 @@ app.get('/',function(req,res){
 res.render('landing.ejs');
 
 })
-function done(arr,res,user){
-    console.log("in done");
-    console.log(arr);
-    res.render('dashboard.ejs',{name:user.name.toUpperCase(),Username:user.username,email:user.email,watchlist:arr});
 
-}
 
  
 
@@ -526,7 +521,7 @@ else{ console.log(user.watchlist);
 setTimeout(function(){
     console.log(arr);
 res.render('dashboard.ejs',{email:user.email,Username:user.username,watchlist:arr,name:user.name})
-},1000);
+},2000);
 
 
 }
