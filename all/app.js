@@ -136,14 +136,34 @@ res.render('show.ejs',{item:selected,trailer:trailer})
 
 
 
+app.post('/discuss',function(req,res){
+var movie=req.body.movie_discuss;
+console.log(movie);
+
+
+
+
+
+res.render('discussion.ejs')
+
+
+})
 
 
 
 
 
 
+app.get('/discover-movies',function(re1,res){
 
+res.render('discover.ejs');
 
+})
+app.get('/discover-tvshows',function(re1,res){
+
+    res.render('discover.ejs');
+    
+    })
 
 app.post('/getmov', function (req, res) {
     var e = req.body.movnm;
@@ -392,6 +412,11 @@ app.get('/movies/top-rated/:id',function(req,res){
 
 });
 
+
+
+
+
+
 app.get('/trending-all/:id',function(req,res){
    
     Request.get("https://api.themoviedb.org/3/trending/all/day?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
@@ -444,7 +469,6 @@ app.get('/trending-people/:id',function(req,res){
 });
 
 
-
 app.get('/movies/upcoming/:id',function(req,res){
    
     Request.get(" https://api.themoviedb.org/3/movie/upcoming?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
@@ -484,7 +508,7 @@ app.get('/movies/now-playing/:id',function(req,res){
 
 app.get('/',function(req,res){
 
-res.render('landing.ejs');
+res.send('index.html');
 
 })
 

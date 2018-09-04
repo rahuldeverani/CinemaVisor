@@ -27,7 +27,13 @@
                               <form action="/addtolist" method="POST"> 
                                <input name="movie" value="<%= item.id %>" style="display: none">
                                <button>Add to watchlist</button>
+                               
                               </form>
+                              <form action="/discuss" method="POST"> 
+                                    <input name="movie_discuss" value="<%= item.id %>" style="display: none">
+                                    <button>Discuss</button>
+                                    
+                                   </form>
                              
                         </div>
                   </div>
@@ -72,7 +78,6 @@
             <div class="review-box">
                         <h2 class="rev">Reviews</h2>
                   <% reviews.results.forEach(function(review) { %>
-
                         
                         <div class="review col-sm-6 col-md-8 col-lg-10">
                                     
@@ -87,7 +92,6 @@
                                     </div>
                               </div>
                         </div>
-
                         <% }) %>
 
             </div>
@@ -96,16 +100,13 @@
                   .divtext {
                         margin-left: 550px;
                   }
-
                   .overview {
                         width: 800px;
                   }
-
                   .review
                   {
                         margin-left: 8%
                   }
-
             </style>
 
             <% include partials/footer.ejs %>
