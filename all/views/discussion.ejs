@@ -6,10 +6,28 @@
 
 
 
-<h1>this is discussion page</h1>
+<h1>Discussions</h1>
+
+
+<a href="/newdiscussion">Add a new Discussion</a>
+
+<h1>Recent Discussions</h1>
+
+<% if(all==null){ %>
+
+ <% }else{ %>
+
+  <% all.forEach(function(discuss){ %>
+
+  <h1><%= discuss.title %></h1>
+  <h1><%= discuss.username %></h1>
+  <h1><%= discuss.description %></h1>
+
+  <% }) %>
 
 
 
-<button>Discuss</button>
+<% } %>
+
 
 <% include partials/footer.ejs %>

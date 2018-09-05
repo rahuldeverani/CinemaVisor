@@ -15,7 +15,7 @@ mongoose.connect("mongodb://localhost:27017/moviesite", { useNewUrlParser: true 
 
 var routes=require('./routes/index');
 var users=require('./routes/users')
-
+var Discussion=require('./models/discussion')
 
 
 var app=express();
@@ -135,21 +135,53 @@ res.render('show.ejs',{item:selected,trailer:trailer})
 
 
 
-
-app.post('/discuss',function(req,res){
-var movie=req.body.movie_discuss;
-console.log(movie);
-
-
-
-
-
-res.render('discussion.ejs')
-
+////////////////////////////////
+app.get('/discuss',function(req,res){
+    Discussion.find({},function(err,all){
+        if(err){
+            console.log(err)
+        }
+        console.log('alll the disci=usiion are ------');
+       console.log(all);
+      res.render('discussion.ejs',{all:all});
+    
+    
+    })
 
 })
 
 
+
+app.get('/newdiscussion',function(req,res){
+
+if(req.user==undefined)
+{
+    return res.render('login.ejs');
+}
+res.render('newdiscussion.ejs');
+})
+
+app.post('/add-discussion',function(req,res){
+var title=req.body.topic;
+var description=req.body.desc;
+var username=req.user.username;
+var email=req.user.email;
+var obj={username,email,title,description};
+Discussion.create(obj,function(err,dis){
+
+    if(err){console.log(err)}
+    else{
+
+        Discussion.find({},function(err,all){
+ console.log('alll the disci=usiion are ------');
+console.log(all);
+
+            res.render('discussion.ejs',{all:all});
+        })
+        
+    }
+})
+})
 
 
 
@@ -282,7 +314,7 @@ app.get('/tvshows/:id',function(req,res){
 });
 
 app.get('/tvshows/toprated/:id',function(req,res){
-
+ var myhead="Top Rated TV Shows";
     Request.get("https://api.themoviedb.org/3/tv/top_rated?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
             return console.dir(error);
@@ -290,7 +322,7 @@ app.get('/tvshows/toprated/:id',function(req,res){
     
         var topratedtvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
-       res.render('indextv.ejs',{shows:topratedtvshows})
+       res.render('indextv.ejs',{shows:topratedtvshows,myhead:myhead})
       // console.log(fullUrl(req));      
 
 
@@ -585,4 +617,4 @@ app.get('/:id',function(req,res){
 
 ///auth now on
 
-app.listen(3090);
+app.listen(4050);
