@@ -144,8 +144,9 @@ app.get('/discuss',function(req,res){
         if(err){
             console.log(err)
         }
-        console.log('alll the disci=usiion are ------');
-       console.log(all);
+      
+      // console.log(all);
+
       res.render('discussion.ejs',{all:all});
     
     
@@ -630,6 +631,7 @@ res.redirect('/dashboard');
 app.post('/addtvtolist',function(req,res){
 
     var t=req.body.tv;
+  
      var user=req.user;
      if(user===undefined){
          return res.render('login.ejs');
