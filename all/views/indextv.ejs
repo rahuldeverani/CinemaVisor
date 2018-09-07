@@ -2,7 +2,7 @@
 
 <div class="a">
   <div class="container">
-        <h1><%= myhead %></h1>
+        <h1 class="mt-name"><%= myhead %></h1>
         <div class="p">
       <div class="row" style="display: flex; flex-wrap: wrap">
 <% shows.results.forEach(function(show){ %>
@@ -10,21 +10,18 @@
           
                  <% } else{ %>
                   <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="thumbnail">
-                     
-                      <div class="caption">
                     
-      
-                  <img src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" alt="" class="thumbnail" style="width:100%">
-                
-                      <h3><%= show.name %></h3>
+                    
+                      <form action="/get-tv" method="POST">
+                 
+                  <input type="image" name="showname" value="<%= show.id %>"  src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" style="width: 100%">
+                      <h3 class="mt-name"><%= show.name %></h3>
                      
-                    <form action="/get-tv" method="POST">
-                   <input type="text" name="showname" value="<%= show.id %>" style="display: none">
-                   <p class="infobtn"><button class="btn btn-primary">More Info!</button> </p>
+                
+                
                     </form>
                   
-                      
+                    
                        
 
                  
@@ -32,8 +29,7 @@
 
 
             
-                </div>
-              </div>
+            
             </div>
             <% } %>
  <%  })  %>
