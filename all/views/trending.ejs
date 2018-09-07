@@ -4,18 +4,28 @@
         <div class="swiper-wrapper">
             
             <% movies.results.forEach(function(movie){ %>
-
                 <% if(movie.poster_path==null){ %>
-
                     <% } else{ %>
-
                         <div class="swiper-slide">
                             <div>
                                 <% if(movie.poster_path==null){ %>
                                     <% console.log("null") %>
-                                    <img src="https://image.tmdb.org/t/p/w500<%= movie.profile_path %>" alt="">
+                                    
+                                    <form action="/getmov" method="POST">
+
+                                        
+                                        <input type="image" name="movnm" value="<%= movie.id %>" src="https://image.tmdb.org/t/p/w500<%= movie.profile_path %>" alt="">
+                                   
+                                    </form>
                                     <% } else{ %>
-                                        <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="">
+
+                                        <form action="/getmov" method="POST" >
+                                     
+                                        
+                                            <input type="image" name="movnm" value="<%= movie.id %>" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" style="height: 100%; width: 100%">
+                                        
+                                        </form>
+                                        
                                         <% } %>
                             </div>
                             <div class="details">
@@ -28,34 +38,21 @@
                                                     <%= movie.title %>
                                                         <% } %>
                                                             <% } %>
-
                                                                 <% if(type=='movie'){ %>
                                                                     <%= movie.title %>
                                                                         <% } %>
-
                                                                             <% if(type=='tv'){ %>
                                                                                 <%= movie.name %>
                                                                                     <% } %>
-
                                                                                         <% if(type=='people'){ %>
                                                                                             <% console.log("pep found") %>
                                                                                             <%= movie.name %>
                                                                                                 <% } %>
-
-
                                                                                                     <br>
-                                                                                                    <span>
-                                                                                                        <form action="/getmov" method="POST">
-                                                                                                            <input type="text" name="movnm" value="<%= movie.id %>" style="display: none">
-                                                                                                            <p class="infobtn">
-                                                                                                                <button class="btn btn-primary">More Info!</button>
-                                                                                                            </p>
-                                                                                                        </form>
-                                                                                                    </span>
+                                                                                                    
                                 </h3>
                             </div>
                         </div>
-
                         <% } %>
                             <%  })  %>
 
@@ -74,24 +71,20 @@
             padding: 0;
             /* background-color: black; */
         }
-
         .swiper-container {
             width: 100%;
             padding-top: 50px;
             padding-bottom: 50px;
         }
-
         .swiper-slide {
             background-position: center;
             background-size: cover;
             width: 300px;
             height: 500px;
         }
-
         img {
             max-width: 100%;
         }
-
         .details {
            
             text-align: center;
@@ -103,9 +96,7 @@
         }
 .details h3{
 color:white;
-
 }
-
     </style>
 
     <script>
