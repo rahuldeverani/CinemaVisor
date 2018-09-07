@@ -7,7 +7,8 @@ name:String,
 username:String,
 password:String,
 email:String,
-watchlist:[Number]
+watchlistmovie:[Number],
+watchlisttv:[Number],
 
 })
 

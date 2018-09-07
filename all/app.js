@@ -10,7 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/moviesite", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/Visor", { useNewUrlParser: true });
 
 
 var routes=require('./routes/index');
@@ -552,7 +552,6 @@ res.send('index.html');
 
  
 
-
 app.get('/dashboard',function(req,res){
 
 
@@ -562,10 +561,10 @@ app.get('/dashboard',function(req,res){
     {
 return res.render('login.ejs');
     }
-else{ console.log(user.watchlist);
+else{ 
   
     var arr=[];
-    user.watchlist.forEach(function(watch){
+    user.watchlistmovie.forEach(function(watch){
      Request.get("https://api.themoviedb.org/3/movie/"+watch+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US", (error, response, body) => {
          if(error) {
              return console.dir(error);
@@ -578,6 +577,28 @@ else{ console.log(user.watchlist);
     
     })
     })
+   
+    user.watchlisttv.forEach(function(watch){
+        Request.get("https://api.themoviedb.org/3/tv/"+watch+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US", (error, response, body) => {
+            if(error) {
+                return console.dir(error);
+            }
+        
+            var mov=JSON.parse(body);
+          
+            arr.push(mov);
+            
+       
+       })
+       })
+
+
+
+
+
+
+
+
 
 setTimeout(function(){
     console.log(arr);
@@ -591,7 +612,7 @@ res.render('dashboard.ejs',{email:user.email,Username:user.username,watchlist:ar
 
 
 
-app.post('/addtolist',function(req,res){
+app.post('/addmovietolist',function(req,res){
 
 var t=req.body.movie;
  var user=req.user;
@@ -599,13 +620,27 @@ var t=req.body.movie;
      return res.render('login.ejs');
  }
  
-user.watchlist.push(t);
+user.watchlistmovie.push(t);
 user.save();
-console.log(user.watchlist);
-res.redirect(req.get('referer'));
+
+res.redirect('/dashboard');
 
 })
 
+app.post('/addtvtolist',function(req,res){
+
+    var t=req.body.tv;
+     var user=req.user;
+     if(user===undefined){
+         return res.render('login.ejs');
+     }
+     
+    user.watchlisttv.push(t);
+    user.save();
+res.redirect('/dashboard');
+    
+    })
+/*
 app.get('/:id',function(req,res){
     Request.get("https://api.themoviedb.org/4/list/1?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
@@ -618,7 +653,7 @@ app.get('/:id',function(req,res){
     
     });
 }
-)
+)*/
 
 ///auth now on
 

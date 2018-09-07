@@ -25,7 +25,7 @@
                               </p>
                               <% console.log("is is "+item.id) %>
                               <h3>User score-<%= item.vote_average %>/10</h3>
-                              <form action="/addtolist" method="POST"> 
+                              <form action="/addmovietolist" method="POST"> 
                                <input name="movie" value="<%= item.id %>" style="display: none">
                                <button style="background: black">Add to watchlist</button>
                                

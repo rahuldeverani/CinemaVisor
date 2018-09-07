@@ -23,8 +23,8 @@
                                                       <%= item.overview %>
                                                 </p>
                                                 <h3>User score-<%= item.vote_average %>/10</h3>
-                                          <form action="/addtolist" method="POST"> 
-                                                <input name="movie" value="<%= item.id %>" style="display: none">
+                                          <form action="/addtvtolist" method="POST"> 
+                                                <input name="tv" value="<%= item.id %>" style="display: none">
                                                 <button style="background: black">Add to watchlist</button>
                                                 
                                                </form>
