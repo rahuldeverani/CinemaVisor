@@ -1,18 +1,18 @@
 <% include partials/header.ejs %>
       
       <% console.dir(item) %>
-            <div class="backimg" id="moviebox">
+            <div class="moviebox">
                
-                  <div class="row" style="border:4px solid black">
-                        <div class="col-md-4 frontimg">
-                              <img src="https://image.tmdb.org/t/p/w500<%= item.poster_path %>" alt="">
+                  <div class="row">
+                        <div class="col-lg-4 col-md-6 col-lg-6">
+                              <img src="https://image.tmdb.org/t/p/w500<%= item.poster_path %>" alt="" style="width: 100%">
                         </div>
                         <!-- <div class="col-md-8 backimg">
                               <div id="mydiv"> <img src="https://image.tmdb.org/t/p/w500<%= item.backdrop_path %>" style="position: relative;">
                               </div>
                         </div> -->
 
-                        <div class="divtext">
+                        <div class="col-md-4 col-lg-6">
                               <h1>
                                     <%= item.title %>
                               </h1>
@@ -29,38 +29,22 @@
                                <button>Add to watchlist</button>
                                
                               </form>
-                              <form action="/discuss" method="POST"> 
-                                    <input name="movie_discuss" value="<%= item.id %>" style="display: none">
-                                    <button>Discuss</button>
-                                    
-                                   </form>
+                           
                              
                         </div>
                   </div>
             </div>
-<div>
-                  <div class="a">
-                        <div class="p">
-                              <div class="row" style="display: flex; flex-wrap: wrap">
-                                    <% casts.cast.forEach(function(cast) { %>
-                                          <% if(cast.profile_path==null){ %>
-                                                <% } else{ %>
-                                                      <div class="col-sm-6 col-md-4 col-lg-2">
-                                                            <div class="thumbnail">
-                                                                  <div class="caption cast">
-                                                                        <img src="https://image.tmdb.org/t/p/w500<%= cast.profile_path %>" alt="<%= cast.name %> style="height:50%;width:50%">
-                                                                        <h3>
-                                                                              <%= cast.name %>
-                                                                        </h3>
-                                                                  </div>
-                                                            </div>
-                                                      </div>
-                                                      <% } %>
-                                                            <%  })  %>
-                              </div>
-                        </div>
-                  </div>
-            </div>
+
+
+
+      </div>
+
+
+
+
+
+
+
 
             <div class="pp">
                   <div class="trailer-box">
@@ -73,9 +57,58 @@
                   </div>
 
             </div>
+<div class="container">
+       
 
+            <h1 class="cast-name">Cast And Crew</h1>
+                  <div class="p">
+                              <div class="row" style="display: flex; flex-wrap: wrap">
+                                  
+                        <% casts.cast.forEach(function(cast){ %>
+                          <% if(cast.profile_path==null){ %>
+                                  
+                                         <% } else{ %>
+                                          <div class="col-sm-6 col-md-3 col-lg-3">
+                                           
+                                             
+                                              
+                                            
+                                                      <img src="https://image.tmdb.org/t/p/w500<%= cast.profile_path %>" style="width: 100%">
+                                          
+                                        
+                                              <h3 class="cast-name"><%= cast.name %></h3>
+                                          
+                                        
+                                      
+                                    </div>
+                                    <% } %>
+                         <%  })  %>
+                        </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <% if(reviews.results.length==0){ %>
+
+                        <% }else{ %>
+                              <h2 class="rev cast-name">Reviews</h2>
+                       <% } %>
+                        
             <div class="review-box">
-                        <h2 class="rev">Reviews</h2>
+                       
                   <% reviews.results.forEach(function(review) { %>
                         
                         <div class="review col-sm-6 col-md-8 col-lg-10">
@@ -95,17 +128,6 @@
 
             </div>
      
-            <style>
-                  .divtext {
-                        margin-left: 550px;
-                  }
-                  .overview {
-                        width: 800px;
-                  }
-                  .review
-                  {
-                        margin-left: 8%
-                  }
-            </style>
+       
 
             <% include partials/footer.ejs %>
