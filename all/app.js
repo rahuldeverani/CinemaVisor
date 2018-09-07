@@ -260,12 +260,14 @@ app.post('/get-tv', function (req, res) {
                     return console.dir(error);
                 }
                 reviews = JSON.parse(body);
-  
-                Request.get(" https://api.themoviedb.org/3/tv/" + e + "/casts?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=credits", (error, response, body) => {
+                https://api.themoviedb.org/3/tv/1399?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=credits
+                Request.get("https://api.themoviedb.org/3/tv/"+e+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=credits", (error, response, body) => {
                     if (error) {
                         return console.dir(error);
                     }
+                   
                     casts = JSON.parse(body);
+                    
                     res.render('showtv.ejs', { item: selected, trailer: trailer, reviews: reviews, casts: casts })
                 })
             })
@@ -620,4 +622,4 @@ app.get('/:id',function(req,res){
 
 ///auth now on
 
-app.listen(4060);
+app.listen(2020);

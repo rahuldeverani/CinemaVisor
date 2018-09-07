@@ -1,6 +1,6 @@
 <% include partials/header.ejs %>
       
-      <% console.dir(item) %>
+      
             <div class="moviebox">
                
                   <div class="row">
@@ -20,13 +20,14 @@
                                     <%= item.release_date %>
                               </h2>
                               <h3>Overview</h3>
-                              <p class="overview">
+                              <p class="overview" style="font-size:1.5em">
                                     <%= item.overview %>
                               </p>
                               <% console.log("is is "+item.id) %>
+                              <h3>User score-<%= item.vote_average %>/10</h3>
                               <form action="/addtolist" method="POST"> 
                                <input name="movie" value="<%= item.id %>" style="display: none">
-                               <button>Add to watchlist</button>
+                               <button style="background: black">Add to watchlist</button>
                                
                               </form>
                            
