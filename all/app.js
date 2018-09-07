@@ -19,6 +19,7 @@ var Discussion=require('./models/discussion')
 
 
 var app=express();
+app.set('views', __dirname + '/views');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(__dirname+"/public"));
@@ -619,4 +620,4 @@ app.get('/:id',function(req,res){
 
 ///auth now on
 
-app.listen(4050);
+app.listen(4060);
