@@ -97,6 +97,7 @@ hr.style-one {
   .rev{
 
     font-family: 'Roboto', sans-serif;
+  
 
   }
   .review-box{
@@ -126,9 +127,8 @@ hr.style-one {
 }
 .cast-name{
 
-margin-left:10%;
-color: white
-
+color: white;
+margin-top:30px;
 }
 .mt-name{
     
@@ -143,4 +143,8 @@ html {
 
 
     margin-top:60px;
+}
+.formdiv{
+
+    width: 100%;
 }
