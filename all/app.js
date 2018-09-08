@@ -472,10 +472,37 @@ app.post('/get-tv', function (req, res) {
 
 
 
+app.get('/trending-all/:id',function(req,res){
+   
+    Request.get("https://api.themoviedb.org/3/trending/movie/day?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+        var tremov=JSON.parse(body);
+        var type='movie';
+        res.render('trending.ejs',{movies:tremov, type:type})
+    })
+});
 
 
-
-
+app.post('/getpeople', function (req, res) {
+    var e = req.body.personName;
+        Request.get("https://api.themoviedb.org/3/person/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+        if (error) {
+            return console.dir(error);
+        }
+        var selected = JSON.parse(body);
+        
+        Request.get("https://api.themoviedb.org/3/person/" + e + "/movie_credits?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+                if (error) {
+                    return console.dir(error);
+                }
+                credits = JSON.parse(body);
+                
+                res.render('showPeople.ejs', { item: selected, credits:credits })
+            })
+    })
+})
 
 
 
@@ -642,17 +669,7 @@ var myhead="Top-Rated Movies"
 
 
 
-app.get('/trending-all/:id',function(req,res){
-   
-    Request.get("https://api.themoviedb.org/3/trending/all/day?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
-        if(error) {
-            return console.dir(error);
-        }
-        var tremov=JSON.parse(body);
-        var type='all';
-       res.render('trending.ejs',{movies:tremov, type:type})
-    })
-});
+
 
 app.get('/trending-movies/:id',function(req,res){
    
@@ -676,7 +693,7 @@ app.get('/trending-tvshows/:id',function(req,res){
     
         var tremov=JSON.parse(body);
         var type='tv';
-        res.render('trending.ejs',{movies:tremov, type:type})
+        res.render('trendingtv.ejs',{shows:tremov, type:type})
     })
 });
 
@@ -689,10 +706,9 @@ app.get('/trending-people/:id',function(req,res){
         console.log("people");
         var tremov=JSON.parse(body);
         var type='people';
-        res.render('trending.ejs',{movies:tremov, type:type})
+        res.render('trendingpeople.ejs',{people:tremov, type:type})
     })
 });
-
 
 app.get('/movies/upcoming/:id',function(req,res){
    var myhead="Upcoming Movies";

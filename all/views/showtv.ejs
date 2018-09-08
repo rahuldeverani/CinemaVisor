@@ -69,18 +69,16 @@
                             
                                    <% } else{ %>
                                     <div class="col-sm-6 col-md-3 col-lg-3">
-                                     
-                                       
-                                        
-                                      
-                                                <img src="https://image.tmdb.org/t/p/w500<%= cast.profile_path %>" style="width: 100%">
-                                    
-                                  
-                                        <h3 class="cast-name" style="text-align: center"><%= cast.name %></h3>
-                                    
-                                  
-                                
-                              </div>
+
+                                                <form action="/getpeople" method="POST">
+
+                                                      <input type="image" name="personName" value="<%= cast.id %>" src="https://image.tmdb.org/t/p/w500<%= cast.profile_path %>"
+                                                            style="width: 100%">
+                                                      <h3 class="cast-name">
+                                                            <%= cast.name %>
+                                                      </h3>
+                                                </form>
+                                          </div>
                               <% } %>
                    <%  })  %>
                   </div>
@@ -118,7 +116,12 @@
 
 
 
-
+            <style>
+                        .panel-body {
+                              color: white;
+                              background-color: black;
+                        }
+                  </style>
             
            
 
