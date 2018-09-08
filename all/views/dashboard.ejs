@@ -13,8 +13,8 @@
           <div class="col-md-8">
 
 
-              <h3>Your Username:    <%= Username %></h3>
-              <h3>Your Email:    <%= email %></h3>
+              <h3 class="mt-name">Your Username:    <%= Username %></h3>
+              <h3 class="mt-name">Your Email:    <%= email %></h3>
               
               
               
@@ -22,6 +22,13 @@
          
   
         </div>
+<% if(watchlist.length==0){ %>
+    <h1>Your WatchList is Empty. Start Adding Now!</h1>
+<% }else{ %>
+
+
+
+
         <h1>Your WatchList</h1>
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -60,7 +67,7 @@
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
       </div>
-  
+    <% } %>
       <style>
           body {
               background: #fff;
