@@ -59,7 +59,157 @@ app.use(expressValidator({
   app.use('/',routes);
 app.use('/users',users);
 
+app.post('/discoversearch',function(req,res){
 
+    var type=req.body.selval;
+    console.log(type);
+    var query=req.body.name;
+    console.log(query);
+     var arr=query.split(" ");
+    var result="";
+    for(var i=0;i<arr.length;i++)
+    {
+    if(i<arr.length-1)
+    {
+        result+=arr[i]+"+"
+    }
+    else{
+    
+        result+=arr[i];
+    }
+    }
+var genre=req.body.genre;
+
+
+var pref=req.body.secpref;
+var arrayofgenre= [ {
+      id: 28,
+      name: "Action"
+    },
+    {
+      id: 12,
+      name: "Adventure"
+    },
+    {
+      id: 16,
+      name: "Animation"
+    },
+    {
+      id: 35,
+      name: "Comedy"
+    },
+
+    {
+      id: 18,
+      name: "Drama"
+    },
+    {
+      id: 10751,
+      name: "Family"
+    },
+    {
+      id: 14,
+      name: "Fantasy"
+    },
+  
+    {
+      id: 27,
+      name: "Horror"
+    },
+    
+  
+    {
+      id: 10749,
+      name: "Romance"
+    },
+    {
+      id: 878,
+      name: "Sci-Fi"
+    },
+
+  ]
+  var myid;
+arrayofgenre.forEach(function(cg){
+
+if(cg.name==genre)
+{
+    myid=cg.id;
+}
+
+
+})
+
+
+console.log(myid);
+console.log(pref);
+
+
+
+
+
+https://api.themoviedb.org/3/discover/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&include_adult=false&include_video=false&page=1&with_genres="+myid
+
+    if(type=="Movies")
+    {console.log("in movies");
+        Request.get("https://api.themoviedb.org/3/discover/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&include_adult=false&include_video=false&page=1&with_genres="+myid, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+      var found=JSON.parse(body);
+     //  console.log(tvshows.results[0].title);
+     var myhead="Results"
+       res.render('index.ejs',{movies:found,myhead:myhead})
+    })
+    }
+    else{
+        var x=false;
+var availarr=['popularity.desc','popularity.asc','vote_averge.desc','vote_averge.asc'];
+availarr.forEach(function(gen){
+if(pref==gen)
+{x=true;
+
+}
+
+
+})
+if(x==false){
+
+    pref='popularity.desc';
+}
+
+
+
+
+
+
+
+
+
+
+      console.log("in tv")
+      
+        Request.get("https://api.themoviedb.org/3/discover/tv?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&page=1&timezone=America%2FNew_York&with_genres="+myid+"&include_null_first_air_dates=false", (error, response, body) => {
+            if(error) {
+                return console.dir(error);
+            }
+          var found=JSON.parse(body);
+         //  console.log(tvshows.results[0].title);
+         var myhead="Results";
+           res.render('indextv.ejs',{shows:found,myhead:myhead})
+        })
+    
+    
+    }
+
+
+
+
+
+
+
+
+    
+})
 app.post('/get',function(req,res){
 
 var type=req.body.selval;
@@ -207,6 +357,9 @@ app.get('/discover-movies',function(re1,res){
 res.render('discover.ejs');
 
 })
+
+
+
 app.get('/discover-tvshows',function(re1,res){
 
     res.render('discover.ejs');
