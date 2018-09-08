@@ -757,7 +757,8 @@ return res.render('login.ejs');
     }
 else{ 
   
-    var arr=[];
+    var arrmov=[];
+    var arrtv=[];
     user.watchlistmovie.forEach(function(watch){
      Request.get("https://api.themoviedb.org/3/movie/"+watch+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US", (error, response, body) => {
          if(error) {
@@ -766,7 +767,7 @@ else{
      
          var mov=JSON.parse(body);
        
-         arr.push(mov);
+         arrmov.push(mov);
          
     
     })
@@ -780,7 +781,7 @@ else{
         
             var mov=JSON.parse(body);
           
-            arr.push(mov);
+            arrtv.push(mov);
             
        
        })
@@ -795,8 +796,8 @@ else{
 
 
 setTimeout(function(){
-    console.log(arr);
-res.render('dashboard.ejs',{email:user.email,Username:user.username,watchlist:arr,name:user.name})
+    
+res.render('dashboard.ejs',{email:user.email,Username:user.username,watchlist:arrmov,shows:arrtv,name:user.name})
 },2000);
 
 

@@ -1,7 +1,7 @@
 <% include partials/header1 %>
      
      <div class="row">
-        <h1>Welcome <%= name %> !</h1>
+        <h1 style="color: white">Welcome <%= name %> !</h1>
           <div class="col-md-4">
 
 
@@ -29,119 +29,84 @@
 
 
 
-        <h1>Your WatchList</h1>
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
+        <h1 style="color: white">Your WatchList</h1>
+       
             
-              <% watchlist.forEach(function(wish){ %>
-  
-                  <% if(wish.poster_path==null){ %>
-  
-                      <% } else{ %>
-  
-                          <div class="swiper-slide">
-                              <div>
-                               
-                                  <% if(wish.poster_path==null){ %>
-                                      <% console.log("null") %>
-                                      <img src="https://image.tmdb.org/t/p/w500<%= wish.profile_path %>" alt="">
-                                      <% } else{ %>
-                                          <img src="https://image.tmdb.org/t/p/w500<%= wish.poster_path %>" alt="">
-                                          <% } %>
-                              </div>
-                              <div class="details">
-                                  <h3>
-                                      
-  
-  
-                                                                                            <br>
-                                                                                                     
-                                  </h3>
-                              </div>
-                          </div>
-  
-                          <% } %>
-                              <%  })  %>
-  
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-      </div>
-    <% } %>
-      <style>
-          body {
-              background: #fff;
-              font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-              font-size: 14px;
-              color: #000;
-              margin: 0;
-              padding: 0;
-              /* background-color: black; */
-          }
-  
-          .swiper-container {
-              width: 100%;
-              padding-top: 50px;
-              padding-bottom: 50px;
-          }
-  
-          .swiper-slide {
-              background-position: center;
-              background-size: cover;
-              width: 300px;
-              height: 500px;
-          }
-  
-          img {
-              max-width: 100%;
-          }
-  
-          .details {
              
-              text-align: center;
-              font-size: 15px;
-              font-weight: bolder;
-              font-family: 'Times New Roman', Times, serif;
-              overflow: hidden;
-              padding: 0px;
-          }
-          h1{
-              color: white;
-          }
-          h3{
-
-            color:gray;
-          }
-      </style>
   
-      <script>
-          var swiper = new Swiper('.swiper-container', {
-              effect: 'coverflow',
-              grabCursor: true,
-              centeredSlides: true,
-              slidesPerView: 'auto',
-              loop: true,
-              mousewheel: true,
-              autoplay: {
-                  delay: 2000,
-                  disableOnInteraction: false,
-              },
-              coverflowEffect: {
-                  rotate: 60,     //rotation
-                  stretch: 0,
-                  depth: 500,     //Depth
-                  modifier: 1,
-                  slideShadows: true,
-              },
-              pagination: {
-                  el: '.swiper-pagination',
-              },
-              navigation: {
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-              },
-          });
-      </script>
+        <h1 style="color:white; width:20%; margin:auto ;margin-top:30px">Movies</h1>
+                                      <div class="p">
+                                    <div class="row" style="display: flex; flex-wrap: wrap">
+                                        
+                                            <% watchlist.forEach(function(wish){ %>
+  
+                                                <% if(wish.poster_path==null){ %>
+                                
+                                                    <% } else{ %>
+                                                <div class="col-sm-6 col-md-4 col-lg-4">
+                                                  
+                                                  
+                                                    <form action="/getmov" method="POST">
+                                                     
+                                                      <input type="image" name="movnm" value="<%= wish.id %>"  src="https://image.tmdb.org/t/p/w500<%= wish.poster_path %>" style="width: 100%">
+                                            
+                                              
+                                                    <h3 class="mt-name"><%= wish.title %></h3>
+                                                   
+                                         
+                                                  </form>
+                                                
+                                                 
+                                                     
+                              
+                                               
+                              
+                              
+                              
+                                          
+                                            
+                                          </div>
+                                          <% } %>
+                               <%  })  %>
+                              </div>
+                              </div>
+                            <% } %>
+    
+
+                            <h1 style="color:white; width:20%; margin:auto; margin-top: 40px;">Tv Shows</h1>
+                            <div class="p">
+                                    <div class="row" style="display: flex; flex-wrap: wrap">
+                              <% shows.forEach(function(show){ %>
+                                <% if(show.poster_path==null){ %>
+                                        
+                                               <% } else{ %>
+                                                <div class="col-sm-6 col-md-4 col-lg-4">
+                                                  
+                                                  
+                                                    <form action="/get-tv" method="POST">
+                                               
+                                                <input type="image" name="showname" value="<%= show.id %>"  src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" style="width: 100%">
+                                                    <h3 class="mt-name"><%= show.name %></h3>
+                                                   
+                                              
+                                              
+                                                  </form>
+                                                
+                                                  
+                                                     
+                              
+                                               
+                              
+                              
+                              
+                                          
+                                          
+                                          </div>
+                                          <% } %>
+                               <%  })  %>
+                              </div>
+                              </div>
+
   
   
         <% include partials/footer1 %>
