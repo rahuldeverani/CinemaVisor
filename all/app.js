@@ -130,17 +130,15 @@ if(cg.name==genre)
 })
 
 
-console.log(myid);
-console.log(pref);
 
 
 
 
 
-https://api.themoviedb.org/3/discover/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&include_adult=false&include_video=false&page=1&with_genres="+myid
+
 
     if(type=="Movies")
-    {console.log("in movies");
+    {
         Request.get("https://api.themoviedb.org/3/discover/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&include_adult=false&include_video=false&page=1&with_genres="+myid, (error, response, body) => {
         if(error) {
             return console.dir(error);
@@ -176,7 +174,7 @@ if(x==false){
 
 
 
-      console.log("in tv")
+  
       
         Request.get("https://api.themoviedb.org/3/discover/tv?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&page=1&timezone=America%2FNew_York&with_genres="+myid+"&include_null_first_air_dates=false", (error, response, body) => {
             if(error) {
@@ -203,9 +201,9 @@ if(x==false){
 app.post('/get',function(req,res){
 
 var type=req.body.selval;
-console.log(type);
+
 var query=req.body.name;
-console.log(query);
+
  var arr=query.split(" ");
 var result="";
 for(var i=0;i<arr.length;i++)
@@ -221,7 +219,7 @@ else{
 }
 
 if(type=="Movies")
-{console.log("in movies");
+{
     Request.get("https://api.themoviedb.org/3/search/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
     if(error) {
         return console.dir(error);
@@ -233,7 +231,7 @@ if(type=="Movies")
 })
 }
 else{
-  console.log("in tv")
+  
     Request.get("https://api.themoviedb.org/3/search/tv?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
         if(error) {
             return console.dir(error);
@@ -279,7 +277,7 @@ app.post('/discussionbytitle',function(req,res){
 var title=req.body.name;
 
 Discussion.find({title:title},function(err,found){
-console.log(found) 
+
  res.render('discussion.ejs',{all:found})
 
 
@@ -331,8 +329,7 @@ Discussion.create(obj,function(err,dis){
     else{
 
         Discussion.find({},function(err,all){
- console.log('alll the disci=usiion are ------');
-console.log(all);
+
 
             res.render('discussion.ejs',{all:all});
         })
@@ -667,7 +664,7 @@ app.get('/trending-movies/:id',function(req,res){
         if(error) {
             return console.dir(error);
         }
-        console.log("movie");
+       
         var tremov=JSON.parse(body);
         var type='movie';
         res.render('trending.ejs',{movies:tremov, type:type})
@@ -693,7 +690,7 @@ app.get('/trending-people/:id',function(req,res){
         if(error) {
             return console.dir(error);
         }
-        console.log("people");
+        
         var tremov=JSON.parse(body);
         var type='people';
         res.render('trendingpeople.ejs',{people:tremov, type:type})

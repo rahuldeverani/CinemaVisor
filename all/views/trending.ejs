@@ -9,7 +9,7 @@
                         <div class="swiper-slide">
                             <div>
                                 <% if(movie.poster_path==null){ %>
-                                    <% console.log("null") %>
+                                   
                                     
                                     <form action="/getmov" method="POST">
 
@@ -48,7 +48,7 @@
                             <div class="details">
                                 <h3>
                                     <% if(type=='all'){ %>
-                                        <% console.log("all clicked") %>
+                                       
                                         <% if(movie.title==null){ %>
                                             <%= movie.name %>
                                                 <% } else{ %>
@@ -62,7 +62,7 @@
                                                                                 <%= movie.name %>
                                                                                     <% } %>
                                                                                         <% if(type=='people'){ %>
-                                                                                            <% console.log("pep found") %>
+                                                                                            
                                                                                             <%= movie.name %>
                                                                                                 <% } %>
                                                                                                     <br>

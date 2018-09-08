@@ -23,7 +23,7 @@
                               <p class="overview" style="font-size:1.5em">
                                     <%= item.overview %>
                               </p>
-                              <% console.log("is is "+item.id) %>
+                      
                               <h3>User score-<%= item.vote_average %>/10</h3>
                               <form action="/addmovietolist" method="POST"> 
                                <input name="movie" value="<%= item.id %>" style="display: none">
@@ -137,4 +137,4 @@
                         }
                         </style>
 
-            <% include partials/footer.ejs %>
+            <% include partials/footer1.ejs %>

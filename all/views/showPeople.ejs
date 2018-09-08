@@ -16,12 +16,12 @@
                 </h2>
                 <% if(item.homepage==null){ %>
                     <% } else{ %>
-                        <h2>
-                            <a href="<%= item.homepage %>">Visit
+                        <h3>
+                            <a style="color: white" href="<%= item.homepage %>">Visit
                                 <%= item.name %>'s Website</a>
-                        </h2>
+                        </h3>
                         <% } %>
-                        <% console.log("is is "+item.id) %>
+                        
             </div>
         </div>
         <h2>Biography :-</h2>
@@ -49,4 +49,4 @@
                                 <%  })  %>
             </div>
         </div>
-        <% include partials/footer.ejs %>
+        <% include partials/footer1.ejs %>
