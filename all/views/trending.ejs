@@ -18,13 +18,30 @@
                                    
                                     </form>
                                     <% } else{ %>
+                                     
+                                        <% if(type=='movie'){ %>
+                                                 <form action="/getmov" method="POST" >
 
-                                        <form action="/getmov" method="POST" >
+                                    
+                                        
                                      
                                         
                                             <input type="image" name="movnm" value="<%= movie.id %>" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" style="height: 100%; width: 100%">
                                         
                                         </form>
+                                    <% }else{ %>
+    <form action="/get-tv" method="POST" >
+
+                                    
+                                        
+                                     
+                                        
+        <input type="image" name="movnm" value="<%= movie.id %>" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" style="height: 100%; width: 100%">
+    
+    </form>
+ <% } %>
+
+                                   
                                         
                                         <% } %>
                             </div>

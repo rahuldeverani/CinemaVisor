@@ -1,4 +1,15 @@
-<% include partials/header.ejs %>
+
+<% include partials/header1.ejs %>
+
+<h1><a style="color: greenyellow ;display: block;" href="/newdiscussion"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add a new Discussion</a></h1>
+<div class="formdiv"><form class="form" action="/discussionbytitle" method="POST" >
+  <div class="search col-md-8 col-sm-8 col-xs-8">
+    <label class="sr-only" for="inlineFormInputName2">Name</label>
+    <input id="myinp" type="text" name="name"class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Discussion Title" required>
+  </div>
+
+  <div class="search col-md-2 col-sm-2 col-xs-2"><button type="submit" class="btn  btn-dark">Search Discussions</button></div>
+  </form></div>
 
 
 
@@ -6,26 +17,28 @@
 
 
 
-<h1>Discussions</h1>
-
-
-<a href="/newdiscussion">Add a new Discussion</a>
-
-<h1>Recent Discussions</h1>
+<h1 style="color:white">Recent Discussions</h1>
 
 <% if(all==null){ %>
 
  <% }else{ %>
   <% all.forEach(function(discuss){ %>
-  <div  class="panel panel-success">
+  <div  class="panel panel-primary">
     <div class="panel-heading">
       <h2 class="panel-title"><%= discuss.title %> discussion started by-<%= discuss.username %></h2>
     </div>
     <div class="panel-body" style="background: black">
+        
+      <h3  style="color: cornflowerblue"><%= discuss.description %></h3>
+
+
+
+
+
+  
       
-      <h3><%= discuss.description %></h3>
     </div>
-    <button>Discuss</button>
+    
   </div>
 
   

@@ -134,7 +134,21 @@ res.render('show.ejs',{item:selected,trailer:trailer})
 
 
 
+app.post('/discussionbytitle',function(req,res){
 
+var title=req.body.name;
+
+Discussion.find({title:title},function(err,found){
+console.log(found) 
+ res.render('discussion.ejs',{all:found})
+
+
+})
+
+
+
+
+})
 
 
 
@@ -186,8 +200,6 @@ console.log(all);
     }
 })
 })
-
-
 
 
 app.get('/discover-movies',function(re1,res){
@@ -268,7 +280,7 @@ app.post('/get-tv', function (req, res) {
                     }
                    
                     casts = JSON.parse(body);
-                    
+                  
                     res.render('showtv.ejs', { item: selected, trailer: trailer, reviews: reviews, casts: casts })
                 })
             })
@@ -642,6 +654,16 @@ app.post('/addtvtolist',function(req,res){
 res.redirect('/dashboard');
     
     })
+    
+    
+    
+  
+    
+    
+    
+   
+   
+
 /*
 app.get('/:id',function(req,res){
     Request.get("https://api.themoviedb.org/4/list/1?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
