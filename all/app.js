@@ -62,22 +62,12 @@ app.use('/users',users);
 app.post('/discoversearch',function(req,res){
 
     var type=req.body.selval;
-    console.log(type);
+ 
     var query=req.body.name;
-    console.log(query);
-     var arr=query.split(" ");
-    var result="";
-    for(var i=0;i<arr.length;i++)
-    {
-    if(i<arr.length-1)
-    {
-        result+=arr[i]+"+"
-    }
-    else{
-    
-        result+=arr[i];
-    }
-    }
+  
+
+  
+   
 var genre=req.body.genre;
 
 
