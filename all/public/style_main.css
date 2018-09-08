@@ -60,7 +60,7 @@ body {
     animation-delay: 25s; 
   }
   .slideshow li:nth-child(5) { 
-    background-image: url(assets/sherlock.jpg);
+    background-image: url(assets/ht.jpg);
     animation-delay: 35s; 
   }
   

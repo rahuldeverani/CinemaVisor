@@ -7,6 +7,8 @@ img.thumbnail{
 .down{
 background-color: black;
 width: 100%;
+margin-bottom: 0; 
+position: absolute;
 height: 200px;
 }
 .sel1{
@@ -132,4 +134,8 @@ color: white
     
     color: white;
     padding-left: 30px;
+}
+html {
+    position: relative;
+    min-height: 100%;
 }
