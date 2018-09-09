@@ -360,18 +360,20 @@ app.get('/discover-movies',function(req,res){
 
 app.get('/discover-tvshows',function(req,res){
 
-    var myhead="Popular Movies"
-    Request.get("https://api.themoviedb.org/3/movie/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+    var myhead="Popular Tv Shows"
+    Request.get("https://api.themoviedb.org/3/tv/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
         if(error) {
             return console.dir(error);
         }
     
-        var popmov=JSON.parse(body);
+        var populartvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
-       res.render('discover.ejs',{movies:popmov,myhead:myhead})
+       res.render('discovertv.ejs',{shows:populartvshows,myhead:myhead})
 
 
 })
+
+
     
     })
 
