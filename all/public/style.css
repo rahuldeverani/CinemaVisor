@@ -88,7 +88,8 @@ hr.style-one {
     background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
     }
    #myinp{
-       width: 100%
+       width: 80%;
+       margin-left: 15%;
    }
   .rev{
 
@@ -160,3 +161,16 @@ margin-left:20%
     margin: auto;
     color: white;
 }
+.submitsearch{
+    background: transparent;
+  
+
+    color: #fff;
+    background: gray;
+ 
+    cursor: pointer;
+    
+ 
+
+  }
+  
