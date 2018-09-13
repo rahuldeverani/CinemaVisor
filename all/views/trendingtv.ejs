@@ -6,9 +6,12 @@
                     <% } else{ %>
                         <div class="swiper-slide">
                             <div>
+                               
                                 <form action="/get-tv" method="POST">
-                                    <input type="image" name="showname" value="<%= show.id %>" src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" alt=""
-                                        style="height: 100%; width: 100%">
+                       
+
+                                    <button type="submit" style="padding: 0" name="showname" value="<%= show.id %>"><img src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" style="width: 100%" alt="SomeAlternateText"></button>
+                                 
                                 </form>
                             </div>
                             <div class="details">

@@ -6,9 +6,12 @@
                         <% } else{ %>
                         <div class="swiper-slide">
                             <div>
-                                    <form action="/getpeople" method="POST">
-                                        <input type="image" name="personName" value="<%= person.id %>" src="https://image.tmdb.org/t/p/w500<%= person.profile_path %>" alt=""
-                                        style="height: 100%; width: 100%">
+                                    
+                                <form action="/getpeople" method="POST">
+                       
+
+                                    <button type="submit" style="padding: 0" name="personName" value="<%= person.id %>"><img src="https://image.tmdb.org/t/p/w500<%= person.profile_path %>" style="width: 100%" alt="SomeAlternateText"></button>
+                                 
                                 </form>
                             </div>
                             <div class="details">

@@ -379,11 +379,14 @@ app.get('/discover-tvshows',function(req,res){
 
 app.post('/getmov', function (req, res) {
     var e = req.body.movnm;
+
+    console.log(e);
     Request.get("https://api.themoviedb.org/3/movie/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
         if (error) {
             return console.dir(error);
         }
         var selected = JSON.parse(body);
+        console.log(selected)
 
         Request.get("https://api.themoviedb.org/3/movie/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=videos", (error, response, body) => {
             if (error) {
@@ -391,18 +394,21 @@ app.post('/getmov', function (req, res) {
             }
 
             var trailer = JSON.parse(body);
+            console.log(trailer)
             var itsId = selected.id;
             Request.get("https://api.themoviedb.org/3/movie/" + itsId + "/reviews?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
                 if (error) {
                     return console.dir(error);
                 }
                 reviews = JSON.parse(body);
+                console.log(reviews)
 
                 Request.get("https://api.themoviedb.org/3/movie/" + itsId + "/casts?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
                     if (error) {
                         return console.dir(error);
                     }
                     casts = JSON.parse(body);
+                    console.log(casts)
                     res.render('show.ejs', { item: selected, trailer: trailer, reviews: reviews, casts: casts })
                 })
             })
@@ -415,7 +421,7 @@ app.post('/getmov', function (req, res) {
 app.post('/get-tv', function (req, res) {
     
     var e = req.body.showname;
-    //console.log(e);
+    console.log(e);
     
     Request.get("https://api.themoviedb.org/3/tv/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US", (error, response, body) => {
         if (error) {
@@ -862,4 +868,4 @@ app.get('/:id',function(req,res){
 
 ///auth now on
 
-app.listen(2020);
+app.listen(2033);

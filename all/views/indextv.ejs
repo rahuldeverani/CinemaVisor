@@ -12,16 +12,20 @@
                   <div class="col-sm-6 col-md-4 col-lg-4">
                     
                     
-                      <form action="/get-tv" method="POST">
                  
-                  <input type="image" name="showname" value="<%= show.id %>"  src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" style="width: 100%">
-                      <h3 class="mt-name" style="text-align: center"><%= show.name %></h3>
-                     
-                
-                
-                    </form>
                   
-                    
+                    <form action="/get-tv" method="POST">
+                       
+                        
+              
+                      <button type="submit" style="padding: 0" name="showname" value="<%= show.id %>"><img src="https://image.tmdb.org/t/p/w500<%= show.poster_path %>" style="width: 100%" alt="SomeAlternateText"></button>
+                      <h3 class="mt-name" style="text-align: center"><%= show.name %></h3>
+                
+
+
+
+         
+                  </form>
                        
 
                  
