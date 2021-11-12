@@ -22,3 +22,4 @@ and much more
 
 #### Link to the live WebApp: https://cinemavisor.herokuapp.com/
 
+<img width="1440" alt="Screenshot 2021-11-12 at 2 56 31 PM" src="https://user-images.githubusercontent.com/35142542/141450631-8d5a3c45-c881-48f1-b54d-fbc02ba821e0.png">
