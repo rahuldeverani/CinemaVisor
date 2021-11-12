@@ -22,9 +22,16 @@ and much more
 
 #### Link to the live WebApp: https://cinemavisor.herokuapp.com/
 
+
+#### Landing Page
 <img width="1440" alt="Screenshot 2021-11-12 at 2 56 31 PM" src="https://user-images.githubusercontent.com/35142542/141450631-8d5a3c45-c881-48f1-b54d-fbc02ba821e0.png">
 
+#### Home Page
 <img width="1428" alt="Screenshot 2021-11-12 at 2 57 20 PM" src="https://user-images.githubusercontent.com/35142542/141451222-f2665178-b29a-4858-8f1f-efd4a6742395.png">
 
-
+#### Sign-Up
 <img width="1433" alt="Screenshot 2021-11-12 at 2 57 54 PM" src="https://user-images.githubusercontent.com/35142542/141451269-22ff063a-50e9-4b03-9311-bea0a55d69cd.png">
+
+#### Add to WishList
+<img width="1438" alt="Screenshot 2021-11-12 at 2 59 05 PM" src="https://user-images.githubusercontent.com/35142542/141451410-6ed51fe5-e9ae-4993-bb8f-edccc04ccfc0.png">
+
